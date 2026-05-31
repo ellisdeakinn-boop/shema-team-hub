@@ -134,12 +134,12 @@ export function AdsKanban({ initialCards }: { initialCards: AdCard[] }) {
           >
             <div className="flex items-center justify-between mb-3 px-1">
               <div className="flex items-center gap-2">
-                <span className="text-[9px] tabular-nums text-[var(--color-muted-2)] tracking-widest">
+                <span className="mono text-[9px] tabular-nums text-[var(--color-muted-2)] tracking-widest">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <Badge tone={s.tone}>{s.label}</Badge>
               </div>
-              <span className="text-[10px] tabular-nums text-[var(--color-muted-2)]">{list.length}</span>
+              <span className="mono text-[10px] tabular-nums text-[var(--color-muted-2)]">{list.length}</span>
             </div>
 
             <div className="space-y-2 min-h-[60px]">
@@ -273,8 +273,8 @@ export function AdsKanban({ initialCards }: { initialCards: AdCard[] }) {
 function MetricMini({ label, value }: { label: string; value: string | null }) {
   return (
     <div className="text-center">
-      <div className="text-[8px] uppercase tracking-widest text-[var(--color-muted-2)]">{label}</div>
-      <div className="text-[10px] font-semibold tabular-nums text-white">{value ?? "–"}</div>
+      <div className="mono text-[8px] uppercase tracking-widest text-[var(--color-muted-2)]">{label}</div>
+      <div className="mono text-[10px] tabular-nums text-white">{value ?? "–"}</div>
     </div>
   );
 }

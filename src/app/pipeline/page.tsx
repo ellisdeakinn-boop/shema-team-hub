@@ -82,7 +82,7 @@ function Tabs({
             key={t.key}
             href={t.href}
             className={cn(
-              "flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-[0.22em] font-medium border-b-2 transition-colors -mb-px",
+              "mono flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-[0.22em] border-b-2 transition-colors -mb-px",
               isActive
                 ? "text-white border-[var(--color-accent)]"
                 : "text-[var(--color-muted)] border-transparent hover:text-white"
@@ -94,7 +94,7 @@ function Tabs({
             {t.label}
             {count !== null && (
               <span className={cn(
-                "ml-1 px-1.5 py-0.5 rounded-sm text-[9px] tabular-nums font-semibold",
+                "mono ml-1 px-1.5 py-0.5 rounded-sm text-[9px] tabular-nums",
                 isActive
                   ? "bg-[var(--color-accent)] text-white"
                   : "bg-[var(--color-surface-2)] text-[var(--color-muted)]"

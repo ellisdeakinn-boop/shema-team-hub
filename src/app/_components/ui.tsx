@@ -16,8 +16,8 @@ export function PageHeader({
       <div>
         {eyebrow && (
           <div className="flex items-center gap-2 mb-4">
-            <span className="h-px w-8 bg-[var(--color-accent)]" />
-            <span className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-accent)] font-medium">
+            <span className="h-px w-8 brand-gradient-bg" />
+            <span className="mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-accent)]">
               {eyebrow}
             </span>
           </div>
@@ -60,7 +60,7 @@ export function Button({
 }) {
   const styles = {
     primary:
-      "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] focus:ring-[var(--color-accent)]",
+      "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] active:bg-[var(--color-accent-dark)] focus:ring-[var(--color-accent)]",
     secondary:
       "bg-[var(--color-surface-2)] text-white border border-[var(--color-border-strong)] hover:bg-[var(--color-border)]",
     ghost:
@@ -71,7 +71,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-[var(--radius-sm)] px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-bg)] disabled:opacity-50 disabled:cursor-not-allowed",
+        "mono inline-flex items-center justify-center gap-2 rounded-[var(--radius-sm)] px-4 py-2 text-xs uppercase tracking-[0.12em] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-bg)] disabled:opacity-50 disabled:cursor-not-allowed",
         styles[variant],
         className
       )}
@@ -138,7 +138,7 @@ export function Label({
   return (
     <label
       className={cn(
-        "block text-xs font-medium uppercase tracking-wider text-[var(--color-muted)] mb-1.5",
+        "mono block text-[10px] uppercase tracking-[0.18em] text-[var(--color-muted)] mb-1.5",
         className
       )}
       {...props}
@@ -167,7 +167,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider",
+        "mono inline-flex items-center gap-1 rounded-sm border px-2 py-0.5 text-[10px] uppercase tracking-wider",
         tones[tone],
         className
       )}

@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0a;
-  --color-surface: #111111;
-  --color-surface-2: #181818;
-  --color-border: #232323;
-  --color-border-strong: #2e2e2e;
-  --color-fg: #fafafa;
-  --color-muted: #8a8a8a;
+  /* Brand palette — sourced from framework-branding.netlify.app */
+  --color-bg: #0d0d0d;
+  --color-surface: #171717;
+  --color-surface-2: #1f1f1f;
+  --color-surface-3: #242424;
+  --color-border: #2e2e2e;
+  --color-border-strong: #3a3a3a;
+
+  --color-fg: #f2f2f2;
+  --color-muted: #8c8c8c;
   --color-muted-2: #5a5a5a;
-  --color-accent: #eb6a2e;
-  --color-accent-hover: #ff8344;
+
+  --color-accent: #eb6a2e;         /* Framework orange */
+  --color-accent-hover: #ff7a3e;
+  --color-accent-dark: #b75421;    /* Pressed / deep */
+  --color-gold: #f5b524;           /* Star gold — accent #2 */
+
   --color-green: #22c55e;
   --color-yellow: #facc15;
   --color-red: #ef4444;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
 
   --radius-sm: 2px;
   --radius-md: 4px;
-  --radius-lg: 6px;
+  --radius-lg: 8px;
 }
 
 html, body {
@@ -34,32 +43,62 @@ html, body {
 
 ::selection { background: var(--color-accent); color: white; }
 
-/* Scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-muted-2); }
+
+/* ============================================================
+   Brand utilities — Framework system
+   ============================================================ */
+
+/* Space Mono — used on uppercase labels, eyebrows, badges, timestamps */
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.mono-regular {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}
+
+/* Brand gradient — orange → gold */
+.brand-gradient-bg {
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-gold) 100%);
+}
+.brand-gradient-text {
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 /* Live pulse dot */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.85); }
 }
-.pulse-dot {
-  animation: pulse-dot 1.5s ease-in-out infinite;
-}
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
 
-/* Slight grain on the background — Framework-style depth */
+/* Subtle orange glow on the page background */
 body {
   background-image:
-    radial-gradient(circle at 100% 0%, rgba(235, 106, 46, 0.05), transparent 40%),
-    radial-gradient(circle at 0% 100%, rgba(235, 106, 46, 0.03), transparent 50%);
+    radial-gradient(circle at 100% 0%, rgba(235, 106, 46, 0.06), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(245, 181, 36, 0.025), transparent 55%);
   background-attachment: fixed;
 }
 
-/* Display heading helper */
+/* Display heading — bold + tight (ExtraBold 800) */
 .display-headline {
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 0.95;
 }
+
+/* CTA pulse — soft 2.5s loop, Framework spec */
+@keyframes cta-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(235, 106, 46, 0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(235, 106, 46, 0); }
+}
+.cta-pulse { animation: cta-pulse 2.5s ease-in-out infinite; }

@@ -24,14 +24,14 @@ export function Nav() {
             <span className="absolute inset-0 rounded-full bg-[var(--color-accent)] pulse-dot" />
           </span>
           <Image
-            src="/framework-logo.png"
+            src="/framework-wordmark.png"
             alt="Framework"
-            width={1920}
-            height={509}
+            width={4500}
+            height={1195}
             priority
-            className="h-6 w-auto select-none transition-opacity group-hover:opacity-80"
+            className="h-7 w-auto select-none transition-opacity group-hover:opacity-80"
           />
-          <span className="hidden sm:inline-block text-[10px] font-medium uppercase tracking-[0.28em] text-[var(--color-muted-2)] border-l border-[var(--color-border)] pl-3 ml-1">
+          <span className="mono hidden sm:inline-block text-[10px] uppercase tracking-[0.28em] text-[var(--color-muted-2)] border-l border-[var(--color-border)] pl-3 ml-1">
             Team Hub
           </span>
         </Link>
@@ -44,7 +44,7 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 className={cn(
-                  "group relative px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] font-medium rounded-sm transition-colors",
+                  "mono group relative px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] rounded-sm transition-colors",
                   active
                     ? "bg-[var(--color-accent)] text-white"
                     : "text-[var(--color-muted)] hover:text-white hover:bg-[var(--color-surface-2)]"
@@ -62,7 +62,7 @@ export function Nav() {
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted-2)]">
+        <div className="mono hidden lg:flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted-2)]">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inset-0 rounded-full bg-[var(--color-accent)] pulse-dot" />
           </span>
@@ -79,7 +79,7 @@ export function Nav() {
               key={l.href}
               href={l.href}
               className={cn(
-                "shrink-0 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] rounded-sm transition-colors",
+                "mono shrink-0 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] rounded-sm transition-colors",
                 active
                   ? "bg-[var(--color-accent)] text-white"
                   : "text-[var(--color-muted)] hover:text-white bg-[var(--color-surface)]"

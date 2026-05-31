@@ -103,10 +103,10 @@ export default async function DashboardPage() {
       <Card>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className="h-px w-6 bg-[var(--color-accent)]" />
-            <h2 className="text-xs font-semibold uppercase tracking-[0.22em] text-white">Organic pipeline</h2>
+            <span className="h-px w-6 brand-gradient-bg" />
+            <h2 className="mono text-xs uppercase tracking-[0.22em] text-white">Organic pipeline</h2>
           </div>
-          <Link href="/pipeline" className="text-[11px] uppercase tracking-wider text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
+          <Link href="/pipeline" className="mono text-[11px] uppercase tracking-wider text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
             Open board →
           </Link>
         </div>
@@ -116,8 +116,8 @@ export default async function DashboardPage() {
               key={s}
               className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface-2)] p-3"
             >
-              <div className="text-[10px] uppercase tracking-widest text-[var(--color-muted)]">{s}</div>
-              <div className="mt-1 text-2xl font-bold text-white">{stats.organicStages[s] ?? 0}</div>
+              <div className="mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]">{s}</div>
+              <div className="mt-1 text-2xl font-bold text-white tabular-nums">{stats.organicStages[s] ?? 0}</div>
             </div>
           ))}
         </div>
@@ -127,15 +127,15 @@ export default async function DashboardPage() {
       <Card>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className="h-px w-6 bg-[var(--color-accent)]" />
-            <h2 className="text-xs font-semibold uppercase tracking-[0.22em] text-white">Ad creatives</h2>
+            <span className="h-px w-6 brand-gradient-bg" />
+            <h2 className="mono text-xs uppercase tracking-[0.22em] text-white">Ad creatives</h2>
             {(stats.adSpend > 0 || stats.adResults > 0) && (
-              <span className="text-[10px] tabular-nums text-[var(--color-muted-2)] uppercase tracking-widest">
+              <span className="mono text-[10px] tabular-nums text-[var(--color-muted-2)] uppercase tracking-widest">
                 · ${stats.adSpend.toFixed(0)} spent · {stats.adResults} results
               </span>
             )}
           </div>
-          <Link href="/pipeline?tab=ads" className="text-[11px] uppercase tracking-wider text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
+          <Link href="/pipeline?tab=ads" className="mono text-[11px] uppercase tracking-wider text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
             Open board →
           </Link>
         </div>
@@ -145,8 +145,8 @@ export default async function DashboardPage() {
               key={s}
               className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface-2)] p-3"
             >
-              <div className="text-[10px] uppercase tracking-widest text-[var(--color-muted)]">{s}</div>
-              <div className="mt-1 text-2xl font-bold text-white">{stats.adStages[s] ?? 0}</div>
+              <div className="mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]">{s}</div>
+              <div className="mt-1 text-2xl font-bold text-white tabular-nums">{stats.adStages[s] ?? 0}</div>
             </div>
           ))}
         </div>
@@ -209,7 +209,7 @@ export default async function DashboardPage() {
 
       {/* Quick links */}
       <div>
-        <h2 className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted)] mb-4">Jump to</h2>
+        <h2 className="mono text-xs uppercase tracking-[0.22em] text-[var(--color-muted)] mb-4">Jump to</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {QUICK_LINKS.map((l, i) => (
             <Link
@@ -219,7 +219,7 @@ export default async function DashboardPage() {
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <div className="text-[10px] uppercase tracking-widest text-[var(--color-muted-2)]">
+                  <div className="mono text-[10px] uppercase tracking-widest text-[var(--color-muted-2)]">
                     0{i + 1}
                   </div>
                   <div className="mt-1 text-lg font-semibold text-white group-hover:text-[var(--color-accent)] transition-colors">
@@ -245,10 +245,10 @@ function StatTile({ label, value, href }: { label: string; value: number; href: 
       href={href}
       className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 hover:border-[var(--color-accent)] transition-colors"
     >
-      <div className="text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
+      <div className="mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
         {label}
       </div>
-      <div className="mt-2 text-3xl font-bold text-white">{value}</div>
+      <div className="mt-2 text-3xl font-bold text-white tabular-nums">{value}</div>
     </Link>
   );
 }

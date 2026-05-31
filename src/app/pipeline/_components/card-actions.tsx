@@ -130,11 +130,11 @@ export function CardEditor({
           </div>
           <div>
             <Label>Owner</Label>
-            <Input value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
+            <Input list="team-members" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
           </div>
           <div>
             <Label>Editor</Label>
-            <Input value={form.editor} onChange={(e) => setForm({ ...form, editor: e.target.value })} />
+            <Input list="team-members" value={form.editor} onChange={(e) => setForm({ ...form, editor: e.target.value })} />
           </div>
           <div>
             <Label>Platform</Label>

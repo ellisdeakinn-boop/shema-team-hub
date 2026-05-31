@@ -126,11 +126,11 @@ function NewOrganicForm() {
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="owner">Owner</Label>
-          <Input id="owner" name="owner" placeholder="Shema" />
+          <Input id="owner" name="owner" list="team-members" placeholder="Shema" />
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="editor">Editor</Label>
-          <Input id="editor" name="editor" placeholder="Editor name" />
+          <Input id="editor" name="editor" list="team-members" placeholder="Keon, Rasharn..." />
         </div>
         <div className="md:col-span-1">
           <Button type="submit">Add</Button>
@@ -198,11 +198,11 @@ function NewAdForm() {
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="ad-owner">Owner</Label>
-          <Input id="ad-owner" name="owner" placeholder="Shema" />
+          <Input id="ad-owner" name="owner" list="team-members" placeholder="Shema" />
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="ad-editor">Editor</Label>
-          <Input id="ad-editor" name="editor" placeholder="Editor" />
+          <Input id="ad-editor" name="editor" list="team-members" placeholder="Keon, Rasharn..." />
         </div>
         <div className="md:col-span-12">
           <Label htmlFor="ad-hook">Hook</Label>

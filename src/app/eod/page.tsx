@@ -48,7 +48,7 @@ export default async function EodPage({ searchParams }: { searchParams: SearchPa
         <form action={submitEod} className="grid grid-cols-1 md:grid-cols-12 gap-3">
           <div className="md:col-span-4">
             <Label htmlFor="author">Your name</Label>
-            <Input id="author" name="author" placeholder="Shema / Editor name" required />
+            <Input id="author" name="author" list="team-members" placeholder="Shema, Keon, Ellis, Rasharn, Anna" required />
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="report_date">Date</Label>

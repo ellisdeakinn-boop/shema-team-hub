@@ -52,7 +52,7 @@ export default async function PrioritiesPage() {
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="owner">Owner</Label>
-            <Input id="owner" name="owner" placeholder="Ellis / Shema" />
+            <Input id="owner" name="owner" list="team-members" placeholder="Shema, Keon, Ellis, Rasharn, Anna" />
           </div>
           <div className="md:col-span-2">
             <Label htmlFor="priority">Priority</Label>

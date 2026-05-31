@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { supabaseServer } from "@/app/lib/supabase";
-import { PageHeader, Card, Button, Input, Textarea, Label, Badge, Empty } from "@/app/_components/ui";
+import { PageHeader, Card, Button, Input, Label, Badge, Empty } from "@/app/_components/ui";
 import { createSop } from "./actions";
 
 export const revalidate = 0;
@@ -8,14 +8,24 @@ export const revalidate = 0;
 type Sop = {
   id: string;
   title: string;
+  url: string | null;
   category: string;
-  body: string;
+  body: string | null;
   tags: string[];
   pinned: boolean;
   updated_at: string;
 };
 
 type SearchParams = Promise<{ q?: string; category?: string }>;
+
+function hostnameFromUrl(u: string | null): string | null {
+  if (!u) return null;
+  try {
+    return new URL(u).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
 
 export default async function SopsPage({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams;
@@ -38,7 +48,7 @@ export default async function SopsPage({ searchParams }: { searchParams: SearchP
       <PageHeader
         eyebrow="05 · Knowledge"
         title="SOP Library"
-        subtitle="Process docs, playbooks, and how-tos. Search, scan, and follow."
+        subtitle="Process docs and playbooks. Linked out to Google Docs, Notion, or wherever they live. Click any card to open."
         actions={
           <form className="flex items-center gap-2">
             <Input
@@ -95,8 +105,11 @@ export default async function SopsPage({ searchParams }: { searchParams: SearchP
               <Input id="tags" name="tags" placeholder="reels, hooks" />
             </div>
             <div className="md:col-span-12">
-              <Label htmlFor="body">Body (markdown supported visually with line breaks)</Label>
-              <Textarea id="body" name="body" rows={10} placeholder="Step 1...&#10;Step 2..." />
+              <Label htmlFor="url">Link to the SOP *</Label>
+              <Input id="url" name="url" type="url" placeholder="https://docs.google.com/document/d/..." required />
+              <p className="mt-1 text-[10px] uppercase tracking-widest text-[var(--color-muted-2)]">
+                Google Doc, Notion page, Drive file — wherever the SOP actually lives.
+              </p>
             </div>
             <div className="md:col-span-12 flex justify-end">
               <Button type="submit">Create SOP</Button>
@@ -110,37 +123,82 @@ export default async function SopsPage({ searchParams }: { searchParams: SearchP
         <Empty>No SOPs match your filter. Try clearing search or category.</Empty>
       ) : (
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {sops.map((s) => (
-            <li key={s.id}>
-              <Link
-                href={`/sops/${s.id}`}
-                className="block rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 hover:border-[var(--color-accent)] transition-colors h-full"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap mb-2">
-                      <Badge tone={s.pinned ? "accent" : "neutral"}>{s.category}</Badge>
-                      {s.pinned && <Badge tone="accent">★ Pinned</Badge>}
-                    </div>
-                    <h3 className="text-base font-semibold text-white">{s.title}</h3>
-                    <p className="mt-1 text-sm text-[var(--color-muted)] line-clamp-2">
-                      {s.body || "No content yet."}
-                    </p>
-                    {s.tags && s.tags.length > 0 && (
-                      <div className="mt-3 flex items-center gap-1.5 flex-wrap">
-                        {s.tags.map((t) => (
-                          <span key={t} className="text-[10px] text-[var(--color-muted)]">#{t}</span>
-                        ))}
+          {sops.map((s) => {
+            const host = hostnameFromUrl(s.url);
+            return (
+              <li key={s.id}>
+                <article className="group rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)] transition-colors h-full flex flex-col">
+                  {s.url ? (
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block p-5 flex-1"
+                    >
+                      <SopCardBody sop={s} host={host} />
+                    </a>
+                  ) : (
+                    <div className="p-5 flex-1 opacity-70">
+                      <SopCardBody sop={s} host={host} />
+                      <div className="mt-2 text-[10px] uppercase tracking-widest text-[var(--color-yellow)]">
+                        ⚠ Missing link — click Edit to add one
                       </div>
+                    </div>
+                  )}
+                  <div className="border-t border-[var(--color-border)] px-5 py-2 flex items-center justify-between">
+                    <Link
+                      href={`/sops/${s.id}`}
+                      className="text-[10px] uppercase tracking-wider text-[var(--color-muted)] hover:text-white"
+                    >
+                      Edit
+                    </Link>
+                    {host && (
+                      <span className="text-[10px] uppercase tracking-widest text-[var(--color-muted-2)]">
+                        {host}
+                      </span>
                     )}
                   </div>
-                  <span className="text-[var(--color-muted-2)]">→</span>
-                </div>
-              </Link>
-            </li>
-          ))}
+                </article>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
+  );
+}
+
+function SopCardBody({ sop, host }: { sop: Sop; host: string | null }) {
+  return (
+    <>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 flex-wrap mb-2">
+            <Badge tone={sop.pinned ? "accent" : "neutral"}>{sop.category}</Badge>
+            {sop.pinned && <Badge tone="accent">★ Pinned</Badge>}
+          </div>
+          <h3 className="text-base font-semibold text-white group-hover:text-[var(--color-accent)] transition-colors">
+            {sop.title}
+          </h3>
+          {sop.tags && sop.tags.length > 0 && (
+            <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+              {sop.tags.map((t) => (
+                <span key={t} className="text-[10px] text-[var(--color-muted)]">#{t}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        {sop.url ? (
+          <span className="text-[var(--color-muted-2)] group-hover:text-[var(--color-accent)] transition-colors shrink-0">
+            ↗
+          </span>
+        ) : null}
+      </div>
+      {host && (
+        <div className="mt-3 text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
+          Opens in {host}
+        </div>
+      )}
+    </>
   );
 }

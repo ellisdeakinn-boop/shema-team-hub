@@ -51,7 +51,7 @@ export default async function SuggestionsPage({ searchParams }: { searchParams: 
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="author">Your name (optional)</Label>
-            <Input id="author" name="author" placeholder="anonymous" />
+            <Input id="author" name="author" list="team-members" placeholder="anonymous (or pick a name)" />
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="area">Area</Label>

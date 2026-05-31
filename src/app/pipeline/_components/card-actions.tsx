@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { moveCard, deleteCard, updateCardField, updateOrganicMetrics } from "../actions";
 import { Button, Input, Textarea, Label } from "@/app/_components/ui";
+import { TeamSelect } from "@/app/_components/team-select";
 
 export function CardMover({ id, stage }: { id: string; stage: string }) {
   const [pending, start] = useTransition();
@@ -130,11 +131,11 @@ export function CardEditor({
           </div>
           <div>
             <Label>Owner</Label>
-            <Input list="team-members" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
+            <TeamSelect value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
           </div>
           <div>
             <Label>Editor</Label>
-            <Input list="team-members" value={form.editor} onChange={(e) => setForm({ ...form, editor: e.target.value })} />
+            <TeamSelect value={form.editor} onChange={(e) => setForm({ ...form, editor: e.target.value })} />
           </div>
           <div>
             <Label>Platform</Label>

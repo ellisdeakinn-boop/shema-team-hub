@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { supabaseServer } from "@/app/lib/supabase";
 import { PageHeader, Card, Button, Input, Textarea, Select, Label } from "@/app/_components/ui";
+import { TeamSelect } from "@/app/_components/team-select";
 import { cn } from "@/app/lib/cn";
 import { createCard } from "./actions";
 import { createAd } from "./ads-actions";
@@ -126,11 +127,11 @@ function NewOrganicForm() {
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="owner">Owner</Label>
-          <Input id="owner" name="owner" list="team-members" placeholder="Shema" />
+          <TeamSelect id="owner" name="owner" />
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="editor">Editor</Label>
-          <Input id="editor" name="editor" list="team-members" placeholder="Keon, Rasharn..." />
+          <TeamSelect id="editor" name="editor" />
         </div>
         <div className="md:col-span-1">
           <Button type="submit">Add</Button>
@@ -198,11 +199,11 @@ function NewAdForm() {
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="ad-owner">Owner</Label>
-          <Input id="ad-owner" name="owner" list="team-members" placeholder="Shema" />
+          <TeamSelect id="ad-owner" name="owner" />
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="ad-editor">Editor</Label>
-          <Input id="ad-editor" name="editor" list="team-members" placeholder="Keon, Rasharn..." />
+          <TeamSelect id="ad-editor" name="editor" />
         </div>
         <div className="md:col-span-12">
           <Label htmlFor="ad-hook">Hook</Label>

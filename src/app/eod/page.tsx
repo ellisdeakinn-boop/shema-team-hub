@@ -1,5 +1,6 @@
 import { supabaseServer } from "@/app/lib/supabase";
 import { PageHeader, Card, Button, Input, Textarea, Select, Label, Badge, Empty } from "@/app/_components/ui";
+import { TeamSelect } from "@/app/_components/team-select";
 import { submitEod, deleteEod } from "./actions";
 import { format } from "date-fns";
 
@@ -48,7 +49,7 @@ export default async function EodPage({ searchParams }: { searchParams: SearchPa
         <form action={submitEod} className="grid grid-cols-1 md:grid-cols-12 gap-3">
           <div className="md:col-span-4">
             <Label htmlFor="author">Your name</Label>
-            <Input id="author" name="author" list="team-members" placeholder="Shema, Keon, Ellis, Rasharn, Anna" required />
+            <TeamSelect id="author" name="author" required />
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="report_date">Date</Label>

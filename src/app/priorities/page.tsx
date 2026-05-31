@@ -1,5 +1,6 @@
 import { supabaseServer } from "@/app/lib/supabase";
 import { PageHeader, Card, Button, Input, Textarea, Select, Label, Badge, Empty } from "@/app/_components/ui";
+import { TeamSelect } from "@/app/_components/team-select";
 import { createPriority, updatePriorityStatus, deletePriority } from "./actions";
 import { format } from "date-fns";
 
@@ -52,7 +53,7 @@ export default async function PrioritiesPage() {
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="owner">Owner</Label>
-            <Input id="owner" name="owner" list="team-members" placeholder="Shema, Keon, Ellis, Rasharn, Anna" />
+            <TeamSelect id="owner" name="owner" />
           </div>
           <div className="md:col-span-2">
             <Label htmlFor="priority">Priority</Label>

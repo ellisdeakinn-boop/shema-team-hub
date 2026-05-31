@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { supabaseServer } from "@/app/lib/supabase";
-import { PageHeader, Card, Button, Input, Label, Badge, Empty } from "@/app/_components/ui";
-import { createSop } from "./actions";
+import { PageHeader, Button, Input, Badge, Empty } from "@/app/_components/ui";
+import { NewSopForm } from "./_components/new-sop-form";
 
 export const revalidate = 0;
 
@@ -85,38 +85,7 @@ export default async function SopsPage({ searchParams }: { searchParams: SearchP
       )}
 
       {/* New SOP */}
-      <details className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden">
-        <summary className="cursor-pointer px-5 py-4 text-sm font-semibold uppercase tracking-wider text-white hover:bg-[var(--color-surface-2)] flex items-center justify-between">
-          <span>+ New SOP</span>
-          <span className="text-xs text-[var(--color-muted)] normal-case">Click to expand</span>
-        </summary>
-        <div className="border-t border-[var(--color-border)] p-5">
-          <form action={createSop} className="grid grid-cols-1 md:grid-cols-12 gap-3">
-            <div className="md:col-span-6">
-              <Label htmlFor="title">Title</Label>
-              <Input id="title" name="title" placeholder="How we cut reels" required />
-            </div>
-            <div className="md:col-span-3">
-              <Label htmlFor="category">Category</Label>
-              <Input id="category" name="category" placeholder="editing / sales / ops" defaultValue="general" />
-            </div>
-            <div className="md:col-span-3">
-              <Label htmlFor="tags">Tags (comma-separated)</Label>
-              <Input id="tags" name="tags" placeholder="reels, hooks" />
-            </div>
-            <div className="md:col-span-12">
-              <Label htmlFor="url">Link to the SOP *</Label>
-              <Input id="url" name="url" type="url" placeholder="https://docs.google.com/document/d/..." required />
-              <p className="mt-1 text-[10px] uppercase tracking-widest text-[var(--color-muted-2)]">
-                Google Doc, Notion page, Drive file — wherever the SOP actually lives.
-              </p>
-            </div>
-            <div className="md:col-span-12 flex justify-end">
-              <Button type="submit">Create SOP</Button>
-            </div>
-          </form>
-        </div>
-      </details>
+      <NewSopForm />
 
       {/* List */}
       {sops.length === 0 ? (

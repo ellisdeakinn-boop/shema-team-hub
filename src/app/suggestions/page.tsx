@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { supabaseServer } from "@/app/lib/supabase";
 import { PageHeader, Card, Button, Input, Textarea, Select, Label, Badge, Empty } from "@/app/_components/ui";
+import { TeamSelect } from "@/app/_components/team-select";
 import { createSuggestion, upvote, setStatus, deleteSuggestion } from "./actions";
 import { format } from "date-fns";
 
@@ -51,7 +52,7 @@ export default async function SuggestionsPage({ searchParams }: { searchParams: 
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="author">Your name (optional)</Label>
-            <Input id="author" name="author" list="team-members" placeholder="anonymous (or pick a name)" />
+            <TeamSelect id="author" name="author" />
           </div>
           <div className="md:col-span-3">
             <Label htmlFor="area">Area</Label>

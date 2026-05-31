@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Button, Input, Textarea, Select, Label } from "@/app/_components/ui";
+import { TeamSelect } from "@/app/_components/team-select";
 import { updateAdField, updateAdMetrics } from "../../ads-actions";
 import type { AdCard } from "./ads-kanban";
 
@@ -150,11 +151,11 @@ function AdEditor({
           </div>
           <div>
             <Label>Owner</Label>
-            <Input list="team-members" value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
+            <TeamSelect value={form.owner} onChange={(e) => setForm({ ...form, owner: e.target.value })} />
           </div>
           <div>
             <Label>Editor</Label>
-            <Input list="team-members" value={form.editor} onChange={(e) => setForm({ ...form, editor: e.target.value })} />
+            <TeamSelect value={form.editor} onChange={(e) => setForm({ ...form, editor: e.target.value })} />
           </div>
           <div className="md:col-span-2">
             <Label>Hook</Label>
